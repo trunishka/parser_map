@@ -1,0 +1,14 @@
+# Python
+*.pyc
+
+# Databases
+*.sqlite3
+
+# IDE
+.idea/
+
+# Mac OS X
+.DS_Store/
+
+# local settings
+project/local_settings.py
