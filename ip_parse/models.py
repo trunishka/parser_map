@@ -13,7 +13,7 @@ class Subnet(models.Model):
         return self.as_number
 
 
-class Compromized_IP(models.Model):
+class CompromizedIP(models.Model):
     title = models.CharField(max_length=255, default='', unique=True)
     appear_date = models.CharField(max_length=20)
     ip_adress = models.CharField(max_length = 15)

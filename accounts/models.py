@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-class user(models.Model):
+class User(models.Model):
     birthday = models.DateField(blank=True, null=True)
     country = models.CharField(max_length=255, default="Ukraine")
 
