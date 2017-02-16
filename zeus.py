@@ -8,7 +8,7 @@ import django
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "parser_resourse.settings")
 django.setup()
 
-from ip_parse.models import Compromized_IP
+from ip_parse.models import CompromizedIP
 
 
 def zeus_lst():
@@ -81,7 +81,7 @@ d['46.28.65.62'].get('data')
 
 def djangoDBbridge(parseddict):
         for key in parseddict.keys():
-            db,status = Compromized_IP.objects.get_or_create(title=' || '.join([parseddict[key].get('date'), key]),
+            db,status = CompromizedIP.objects.get_or_create(title=' || '.join([parseddict[key].get('date'), key]),
                                                              appear_date=parseddict[key].get('date'),
                                                              ip_adress=parseddict[key].get('ip'),
                                                              as_number=parseddict[key].get('subnet'),

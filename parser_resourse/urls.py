@@ -7,7 +7,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from djgeojson.views import GeoJSONLayerView
 
 from ip_parse.views import home, compromized, subnet
-from ip_parse.models import Compromized_IP
+from ip_parse.models import CompromizedIP
 from accounts.views import user
 from ip_parse import views
 
@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^subnet/', subnet, name="subnet"),
     url(r'^$', TemplateView.as_view(template_name="index.html"), name="index"),
     url(r'^info/', views.CompromizedStock.as_view(), name="info"),
-    url(r'^data/', GeoJSONLayerView.as_view(model=Compromized_IP, properties=('ip_adress', 'apper_date','geom')), name='data'),
+    url(r'^data/', GeoJSONLayerView.as_view(model=CompromizedIP, properties=('ip_adress', 'apper_date','geom')), name='data'),
 
 ]
 

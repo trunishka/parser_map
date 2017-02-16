@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from ip_parse.models import Compromized_IP
+from ip_parse.models import CompromizedIP
 
 class CompromizedSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Compromized_IP
+        model = CompromizedIP
         fields = "__all__"
