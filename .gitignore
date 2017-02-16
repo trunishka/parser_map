@@ -13,4 +13,4 @@
 # local settings
 project/local_settings.py
 
-__pycache__
+.__pycache__/
