@@ -19,7 +19,7 @@ urlpatterns = [
     url(r'^subnet/', subnet, name="subnet"),
     url(r'^$', TemplateView.as_view(template_name="index.html"), name="index"),
     url(r'^info/', views.CompromizedStock.as_view(), name="info"),
-    url(r'^data/', GeoJSONLayerView.as_view(model=CompromizedIP, properties=('ip_adress', 'appear_date','geom')), name='data'),
+    url(r'^data/', GeoJSONLayerView.as_view(model=CompromizedIP, properties=('ip_adress', 'appear_date','geom', 'resourse')), name='data'),
 
 ]
 

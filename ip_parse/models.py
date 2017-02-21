@@ -19,7 +19,9 @@ class CompromizedIP(models.Model):
     ip_adress = models.CharField(max_length = 15)
     as_number = models.CharField(Subnet, max_length=15, blank=True, null=True)
     malware_type = models.CharField(max_length=255)
+    resourse = models.CharField(max_length=2555)
     geom = PointField()
+
 
 
 

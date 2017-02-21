@@ -22,7 +22,7 @@
 
             function onEachfeature(feature, layer){
                 layer.on('click', function(e){
-                    var ourPopup = 'ip:'+e.target.feature.properties.ip_adress+'<br>'+ 'date:'+e.target.feature.properties.appear_date;
+                    var ourPopup = 'ip:'+e.target.feature.properties.ip_adress+'<br>'+ 'date:'+e.target.feature.properties.appear_date+ '<br>'+ 'resourse: '+e.target.feature.properties.resourse;
                     layer.bindPopup(ourPopup).openPopup(e.geom);
                 });
             }

@@ -64,9 +64,9 @@ def compare(dict, list):
     for line in list:
         for key in dict.keys():
             if key in line[3]:
-                dict[key].update({'date': line[0], 'ip': line[3], 'subnet':line[8], 'malware': line[1]})
+                dict[key].update({'date': line[0], 'ip': line[3], 'subnet':line[8], 'malware': line[1], "resourse": "zeustracker",})
             elif key in line[2]:
-                dict[key].update({'date': line[0], 'ip': line[2], 'subnet':" ", 'malware': line[3]})
+                dict[key].update({'date': line[0], 'ip': line[2], 'subnet':" ", 'malware': line[3], "resourse": "cybercrime-tracker",})
     return dict
 
 
@@ -86,7 +86,8 @@ def djangoDBbridge(parseddict):
                                                              ip_adress=parseddict[key].get('ip'),
                                                              as_number=parseddict[key].get('subnet'),
                                                              malware_type=parseddict[key].get('malware'),
-                                                             geom=parseddict[key].get('geom'))
+                                                             geom=parseddict[key].get('geom'),
+                                                             resourse=parseddict[key].get('resourse'))
             if status == True:
                 db.appear_data = parseddict[key].get('date')
                 db.save()

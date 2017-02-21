@@ -14,3 +14,5 @@
 project/local_settings.py
 
 .__pycache__/
+
+python manage.py
