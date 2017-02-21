@@ -1,10 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{%load leaflet_tags%}
+<html>
+  <head>
+    {%leaflet_js%}
+    {%leaflet_css%}
+    <style>
+      .leaflet-container {height: 80%;}
+    </style>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  </head>
+  <body>
+    <h1>map</h1>
+    <li><a href ="{%url "compromized"%}">compromized ip</a></li>
+    <li><a href ="{%url "subnet"%}">list of Ukrainian AS</a></li>
+    <li><a href ="{%url "index"%}">map</a></li>
+    <li><a href ="{%url "users"%}">users</a></li>
+    {%leaflet_map "main" callback="main_map_init"%}
 
-</body>
+    <script type="text/javascript">
+        function main_map_init (map, options) {
+            var dataurl = '{% url "data" %}';
+
+            function onEachfeature(feature, layer){
+                layer.on('click', function(e){
+                    var ourPopup = 'ip:'+e.target.feature.properties.ip_adress+'<br>'+ 'date:'+e.target.feature.properties.apper_date;
+                    layer.bindPopup(ourPopup).openPopup(e.properties.geom);
+                });
+            }
+            var ourLayer = L.geoJson(null,{
+                onEachFeature:onEachfeature
+            });
+
+            $.getJSON(dataurl, function(data){
+                // Add GeoJSON layer
+               ourLayer.addData(data);
+
+            })
+            ourLayer.addTo(map);
+            }
+{##}
+{##}
+{#//alert (data.features[0].id);#}
+{#                        //$('#countries').append(' <a href="#" id=""  onclick="L.geoJson(val.features[\'key\'].val).addTo(map)"><b>' + key. + '</b></a><br>;');#}
+{##}
+{##}
+{#            })#}
+{#        }#}
+{##}
+{#function view_mar(ttt) {#}
+{#           // alert (ttt);#}
+{#    //if (confirm("Вы подтверждаете удаление?")) {#}
+{#    //    return true;#}
+{#    //} else {#}
+{#       // return false;#}
+{#    //}#}
+{##}
+{#var features = {};#}
+{##}
+{#features[0]= [id=5, type="Feature",geometry=[coordinates]];#}
+{#features[1]= [];#}
+{#features[2]= [];#}
+{#features[3]= [];#}
+{##}
+{#    var data = features.[0]["Яблоко", "Апельсин", "Груша"]#}
+{##}
+{##}
+{#L.geoJson(data).addTo(map);#}
+{##}
+}
+{##}
+{##}
+{#var users2 = [];#}
+{#var url_ = 'http://127.0.0.1:8000/info/?format=json';#}
+{##}
+{#$(function() {#}
+{#    $.getJSON(url_, function (data) {#}
+{#        $.each(data, function (key, val) {#}
+{#            // users2[key] = val.id;#}
+{#            //#}
+{#            //$('#countries').append('<a href="#" id="' + key + '" onclick="alert("=aaaaaidaaa");" value="' + val.ip_adress + '"><b>' + val.ip_adress + '</b></a><br>');#}
+{##}
+{##}
+{#           //$('#countries').append(' <a href="#" id="' + key + '"  onclick="return alert(\'' + val.ip_adress + '\')"><b>' + val.ip_adress + '</b></a><br>;');#}
+{##}
+{##}
+{#            var  vadyus = [features[0]];#}
+{##}
+{##}
+{#//data.features[0].id#}
+{##}
+{##}
+{#          ///  alert (vadyus);#}
+{##}
+{##}
+{##}
+{#           $('#countries').append(' <a href="#" id="' + key + '"  onclick="return view_mar(\'' + val.ip_adress + '\')"><b>' + val.ip_adress + '</b></a><br>;');#}
+{##}
+{##}
+{#     //      $('#countries').append(' <a href="#" id="' + key + '"  onclick="return main_map_init(map, val)"><b>' + val.ip_adress + '</b></a><br>;');#}
+{#        });#}
+{#       // onclick="alert("=aaaaaidaaa");"#}
+{#    });#}
+{#   // alert(users2[1] + "=aaaaaidaaa");#}
+{#{);#}
+
+    </script>
+
+
+    <div id="countries" style="border:1px solid rgba(255,0,0,0); width: 500px; " >
+
+
+    </div>
+
+
+    <!--<select id="countries">   </select>-->
+
+  </body>
 </html>

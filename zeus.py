@@ -27,7 +27,7 @@ def zeus_lst():
 
 
 def cycrime_lst():
-    URL = 'http://cybercrime-tracker.net/index.php?s=0&m=1'
+    URL = 'http://cybercrime-tracker.net/index.php?s=0&m=10000'
     row_lst = []
     f = urlopen(URL)
     soup = BeautifulSoup(f, 'lxml')

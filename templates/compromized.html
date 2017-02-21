@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Compromized IP</title>
-</head>
+{%extends 'base.html'%}
 
+{%block content%}
 {%for unoip in compromized%}
-    <li><ul>{{unoip}}</ul></li>
+    <li><ul>{{unoip.appear_date}} == {{unoip.ip_adress}}=={{unoip.malware_type}}</ul></li>
 {%endfor%}
-<body>
-
+{%endblock content%}
 
 </body>
 </html>

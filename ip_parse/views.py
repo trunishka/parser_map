@@ -15,7 +15,7 @@ def compromized(request):
     return render(request, "compromized.html",{"compromized":CompromizedIP.objects.all})
 
 def subnet(request):
-    return(request, "subnet.html")
+    return render(request, "subnet.html")
 
 def index(request):
 
