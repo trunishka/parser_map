@@ -14,6 +14,7 @@
     <li><a href ="{%url "subnet"%}">list of Ukrainian AS</a></li>
     <li><a href ="{%url "index"%}">map</a></li>
     <li><a href ="{%url "users"%}">users</a></li>
+
     {%leaflet_map "main" callback="main_map_init"%}
 
     <script type="text/javascript">
@@ -22,32 +23,19 @@
 
             function onEachfeature(feature, layer){
                 layer.on('click', function(e){
-                    var ourPopup = 'ip:'+e.target.feature.properties.ip_adress+'<br>'+ 'date:'+e.target.feature.properties.appear_date+ '<br>'+ 'resourse: '+e.target.feature.properties.resourse;
+                    var ourPopup = 'ip:'+e.target.feature.properties.ip_adress+'<br>'+ 'date:'+e.target.feature.properties.appear_date+'<br>'+ 'malware: '+e.target.feature.properties.malware_type+'<br>'+ 'resourse: '+e.target.feature.properties.resourse;
                     layer.bindPopup(ourPopup).openPopup(e.geom);
                 });
             }
             var ourLayer = L.geoJson(null,{
                 onEachFeature:onEachfeature
             });
-
             $.getJSON(dataurl, function(data){
                 // Add GeoJSON layer
                ourLayer.addData(data);
-
             })
             ourLayer.addTo(map);
             }
-
     </script>
-
-
-    <div id="countries" style="border:1px solid rgba(255,0,0,0); width: 500px; " >
-
-
-    </div>
-
-
-    <!--<select id="countries">   </select>-->
-
-  </body>
+   </body>
 </html>
