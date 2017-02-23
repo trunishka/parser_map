@@ -22,8 +22,5 @@ class CompromizedIP(models.Model):
     resourse = models.CharField(max_length=2555)
     geom = PointField()
 
-
-
-
     def __str__(self):
         return self.title
