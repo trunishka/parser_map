@@ -45,14 +45,14 @@ cycrime_ip = [x[2] for x in cycrime_lst()]
 
 def geo_id(ip_lst):
     result ={}
-    reader = database.Reader("/home/user/Desktop/db for parsing/GEodata/GeoLite2-City.mmdb")
+    reader = database.Reader("/home/user/Desktop/projects/GeoLite2-City.mmdb")
     for uno_ip in ip_lst:
         try:
             geo_ip = reader.city(uno_ip)
             long = geo_ip.location.longitude
             lat = geo_ip.location.latitude
             if geo_ip.country.name == "Ukraine":
-                result.update({uno_ip: ({'geom': {'type': 'Point', 'coordinates': [long, lat]}})})
+                result.update({uno_ip: {'long':long, 'lat':lat}})
 
         except:
             pass
@@ -81,12 +81,13 @@ d['46.28.65.62'].get('data')
 
 def djangoDBbridge(parseddict):
         for key in parseddict.keys():
-            db,status = CompromizedIP.objects.get_or_create(title=' || '.join([parseddict[key].get('date'), key]),
+            db,status = CompromizedIP.objects.get_or_create(title='=-='.join([parseddict[key].get('date'), key]),
                                                              appear_date=parseddict[key].get('date'),
                                                              ip_adress=parseddict[key].get('ip'),
                                                              as_number=parseddict[key].get('subnet'),
                                                              malware_type=parseddict[key].get('malware'),
-                                                             geom=parseddict[key].get('geom'),
+                                                             lat=parseddict[key].get('lat'),
+                                                             long=parseddict[key].get('long'),
                                                              resourse=parseddict[key].get('resourse'))
             if status == True:
                 db.appear_data = parseddict[key].get('date')

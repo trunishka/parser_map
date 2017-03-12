@@ -2,6 +2,7 @@ from rest_framework import serializers
 from ip_parse.models import CompromizedIP
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.core.serializers import serialize
 
 class CompromizedSerializer(serializers.ModelSerializer):
 
@@ -13,5 +14,6 @@ class CompromizedSerializer(serializers.ModelSerializer):
 class CompromizedStock(APIView):
     def get(self, request):
         compromized = CompromizedIP.objects.all()
-        serialazer = CompromizedSerializer(compromized, many=True)
-        return Response(serialazer.data)
+        serialazer = serialize('geojson', compromized,  geometry_field='point',
+          fields=('name',))
+        return Response(serialazer)

@@ -20,7 +20,10 @@ class CompromizedIP(models.Model):
     as_number = models.CharField(Subnet, max_length=15, blank=True, null=True)
     malware_type = models.CharField(max_length=255)
     resourse = models.CharField(max_length=2555)
-    geom = PointField()
+    long = models.FloatField()
+    lat = models.FloatField()
 
+    # first_create_date = models.DateTimeField(auto_now=False, auto_now_add=True)
+    # last_update_date = models.DateTimeField(auto_now=True, auto_now_add=False)
     def __str__(self):
         return self.title

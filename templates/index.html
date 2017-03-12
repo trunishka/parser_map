@@ -15,11 +15,14 @@
     <li><a href ="{%url "index"%}">map</a></li>
     <li><a href ="{%url "users"%}">users</a></li>
 
+
     {%leaflet_map "main" callback="main_map_init"%}
 
     <script type="text/javascript">
         function main_map_init (map, options) {
-            var dataurl = '{% url "data" %}';
+            var dataurl = '(data)';
+
+{#            var dataurl = JSON.parse({{ data }});
 
             function onEachfeature(feature, layer){
                 layer.on('click', function(e){
@@ -33,9 +36,13 @@
             $.getJSON(dataurl, function(data){
                 // Add GeoJSON layer
                ourLayer.addData(data);
-            })
+            });
             ourLayer.addTo(map);
             }
+
+
+
+
     </script>
    </body>
 </html>
