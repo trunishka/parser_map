@@ -18,8 +18,20 @@ def test(request):
     number = []
     if request.method == 'POST':
         malware = request.POST.get('malware')
-        resourse = None
-        sample = CompromizedIP.objects.all().filter(malware_type = malware,).filter(resourse=resourse)
+        resourse = None if request.POST.get('resourse') == '' else request.POST.get('resourse')
+
+        filter_params = {}
+
+        if resourse != None:
+            filter_params.update({
+                'resourse' : resourse
+            })
+        if resourse != None:
+            filter_params.update({
+                'resourse' : resourse
+            })
+
+        sample = CompromizedIP.objects.filter(**filter_params)
         print(sample, malware, resourse)
         for one in sample:
            number.append([one.appear_date, one.ip_adress, one.as_number, one.malware_type, one.resourse, one.lat, one.long])
