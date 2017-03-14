@@ -45,7 +45,7 @@ cycrime_ip = [x[2] for x in cycrime_lst()]
 
 def geo_id(ip_lst):
     result ={}
-    reader = database.Reader("/home/user/Desktop/projects/GeoLite2-City.mmdb")
+    reader = database.Reader("/home/user/Desktop/db for parsing/GEodata/GeoLite2-City.mmdb")
     for uno_ip in ip_lst:
         try:
             geo_ip = reader.city(uno_ip)

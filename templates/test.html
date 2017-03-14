@@ -2,8 +2,14 @@
 
 {%block content%}
 
+        <form action=" " method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=" type="text/javascript"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYYrCsNcwH2JLUTJIfpHNzUZYBf6mkcHc" type="text/javascript"></script>
         <script type="text/javascript">
         // check DOM Ready
         $(document).ready(function() {
@@ -13,8 +19,8 @@
                 var options = {
                     center: {lat: 48.0, lng: 31.0},
                     zoom: 6,
-                    mapTypeId: google.maps.MapTypeId.TERRAIN,
-                    mapTypeControl: false
+                    mapTypeId: google.maps.MapTypeId.HYBRID,
+                    mapTypeControl: true
                 };
                 var locations = ({{ number|safe }});
                 var infowindow = new google.maps.InfoWindow();
@@ -55,14 +61,14 @@
 {#            infowindow.setContent(locations[i].contentString);#}
 {#            infowindow.open(map, marker);#}
 {#        };#}
-    };
+    }
 
             })();
         });
         </script>
     </head>
     <body>
-        <div id="map_canvas" style="width: 1050px; height:620px;"></div>
+        <div id="map_canvas" style="width: 80%; height: 620px;"></div>
 {%endblock content%}
 </body>
 </html>

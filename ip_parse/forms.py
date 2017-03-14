@@ -1,11 +1,7 @@
-import django_filters
 from ip_parse.models import CompromizedIP
+from django import forms
 
 
-class ProductFilter(django_filters.FilterSet):
-    name = django_filters.CharFilter(lookup_expr='iexact')
-
-
-    class Meta:
-        model = CompromizedIP
-        fields = ['ip_adress', 'resourse', 'appear_date']
+class TestForm(forms.Form):
+    malware = forms.CharField(label = "malware", max_length= 100, required=False)
+    resourse = forms.CharField(label = "resourse", max_length=100, required=False)
