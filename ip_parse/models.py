@@ -15,7 +15,7 @@ class Subnet(models.Model):
 
 class CompromizedIP(models.Model):
     title = models.CharField(max_length=255, default='', unique=True)
-    appear_date = models.CharField(max_length=20)
+    appear_date = models.DateField(auto_now=False, auto_now_add=False)
     ip_adress = models.CharField(max_length = 15)
     as_number = models.CharField(Subnet, max_length=15, blank=True, null=True)
     malware_type = models.CharField(max_length=255)

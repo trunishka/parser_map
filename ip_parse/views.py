@@ -13,30 +13,29 @@ def index(request):
 
 
 def test(request):
-    form = TestForm(request.POST)
-
     number = []
+    form = TestForm(request.POST)
     if request.method == 'POST':
-        malware = request.POST.get('malware')
+        malware = None if request.POST.get('malware') == '' else request.POST.get('malware')
         resourse = None if request.POST.get('resourse') == '' else request.POST.get('resourse')
-
         filter_params = {}
-
-        if resourse != None:
-            filter_params.update({
-                'resourse' : resourse
-            })
-        if resourse != None:
-            filter_params.update({
-                'resourse' : resourse
-            })
-
-        sample = CompromizedIP.objects.filter(**filter_params)
-        print(sample, malware, resourse)
+        print("asdf", form)
+        if form.is_valid():
+            if resourse != None:
+                print(resourse)
+                filter_params.update({
+                    'resourse' : tuple(resourse)
+                })
+            if malware != None:
+                filter_params.update({
+                    'malware_type' : malware
+                })
+            sample = CompromizedIP.objects.filter(**filter_params)
+            print(sample, malware, resourse)
         for one in sample:
-           number.append([one.appear_date, one.ip_adress, one.as_number, one.malware_type, one.resourse, one.lat, one.long])
+           number.append([one.appear_date.isoformat(), one.ip_adress, one.as_number, one.malware_type, one.resourse, one.lat, one.long])
     else:
         sample = CompromizedIP.objects.all()
         for one in sample:
-            number.append([one.appear_date, one.ip_adress, one.as_number, one.malware_type, one.resourse, one.lat, one.long])
+            number.append([one.appear_date.isoformat(), one.ip_adress, one.as_number, one.malware_type, one.resourse, one.lat, one.long])
     return render(request, "test.html", {"number": number, 'form':form})
