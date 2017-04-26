@@ -25,7 +25,7 @@ SECRET_KEY = '_+-ta@jwz^wdpzdec^tx$2^*zj^fo$sa0amx6lt@=^7j$z^zuk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS =[] #['10.10.11.89', ""]
 
 
 # Application definition
@@ -143,4 +143,9 @@ LEAFLET_CONFIG = {
     'MIN_ZOOM': 4,
     'MAX_ZOOM': 15,
 }
+
+try:
+    from parser_resource.local_settings import *
+except ImportError:
+    pass
 

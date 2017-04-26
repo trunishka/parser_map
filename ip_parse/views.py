@@ -20,18 +20,18 @@ def test(request):
         resourse = None if request.POST.get('resourse') == '' else request.POST.get('resourse')
         filter_params = {}
         print("asdf", form)
+
         if form.is_valid():
             if resourse != None:
                 print(resourse)
                 filter_params.update({
-                    'resourse' : tuple(resourse)
+                    'resourse' : resourse
                 })
             if malware != None:
                 filter_params.update({
                     'malware_type' : malware
                 })
-            sample = CompromizedIP.objects.filter(**filter_params)
-            print(sample, malware, resourse)
+        sample = CompromizedIP.objects.filter(**filter_params)
         for one in sample:
            number.append([one.appear_date.isoformat(), one.ip_adress, one.as_number, one.malware_type, one.resourse, one.lat, one.long])
     else:

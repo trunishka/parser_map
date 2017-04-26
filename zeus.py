@@ -64,13 +64,13 @@ def geo_id(ip_lst):
 def compare(dict, list):
     for line in list:
         for key in dict.keys():
-            wrongdate = line[0]
-            rawdate = wrongdate.split('-')
-            rawdate[0],rawdate[2] = rawdate[2],rawdate[0]
-            date = '-'.join(rawdate)
             if key in line[3]:
-                dict[key].update({'date': date, 'ip': line[3], 'subnet':line[8], 'malware': line[1], "resourse": "zeustracker",})
+                dict[key].update({'date': line[0], 'ip': line[3], 'subnet':line[8], 'malware': line[1], "resourse": "zeustracker",})
             elif key in line[2]:
+                wrongdate = line[0]
+                rawdate = wrongdate.split('-')
+                rawdate[0], rawdate[2] = rawdate[2], rawdate[0]
+                date = '-'.join(rawdate)
                 dict[key].update({'date': date, 'ip': line[2], 'subnet':" ", 'malware': line[3], "resourse": "cybercrime-tracker",})
     return dict
 

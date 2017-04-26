@@ -19,6 +19,6 @@ for element in objects:
 
 
 class TestForm(forms.Form):
-    malware = forms.MultipleChoiceField(label = "malware",  initial=" ", widget=forms.CheckboxSelectMultiple(), choices=tuple(malwarelist), required=False)
-    resourse = forms.ChoiceField(label = "malware",  initial=" ", choices=tuple(resourselist), widget=forms.Select(), required=False)
+    malware = forms.ChoiceField(label = "malware",  initial=" ", widget=forms.Select(), choices=set(malwarelist), required=False)
+    resourse = forms.ChoiceField(label = "resourse",  initial=" ", choices=set(resourselist), widget=forms.Select(), required=False)
 
